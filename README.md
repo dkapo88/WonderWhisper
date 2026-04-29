@@ -6,6 +6,13 @@ WonderWhisper is an Android dictation app that brings a floating voice-to-text b
 
 This project is now open source under the MIT License. Bring your own API keys for cloud services.
 
+## Screenshots
+
+<p>
+  <img src="docs/assets/screenshots/home.png" alt="WonderWhisper home screen with mode toggle, transcription stats, and settings tiles" width="280">
+  <img src="docs/assets/screenshots/how-to.png" alt="WonderWhisper How-To Guide showing practice dictation and provider setup guidance" width="280">
+</p>
+
 ## Features
 
 - System-wide floating dictation bubble
