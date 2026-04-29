@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.slumdog88.dictationkeyboardai.ui.screens.ApiKeysScreen
+import com.slumdog88.dictationkeyboardai.utils.SettingsManager
 
 class ApiKeysActivity : ComponentActivity() {
     
@@ -27,6 +28,7 @@ class ApiKeysActivity : ComponentActivity() {
         
         // Initialize secure API key manager
         secureApiKeyManager = SecureApiKeyManager.getInstance(this)
+        val isSimpleMode = SettingsManager(this).isSimpleMode()
         
         // Perform migration if needed
         if (secureApiKeyManager.isMigrationNeeded()) {
@@ -81,7 +83,8 @@ class ApiKeysActivity : ComponentActivity() {
                                 HapticUtils.performHapticFeedback(this@ApiKeysActivity)
                                 finish()
                             },
-                            initialKeys = initialKeys
+                            initialKeys = initialKeys,
+                            isSimpleMode = isSimpleMode
                         )
                     }
                 }

@@ -49,11 +49,8 @@ import com.slumdog88.dictationkeyboardai.ui.theme.Radii
 
 @Composable
 fun FeedbackScreenDM(
-    onImageAttach: () -> Unit,
-    onLogsAttach: () -> Unit,
     onSendFeedback: (String, String, String, String, String, String) -> Unit,
-    onBackPressed: () -> Unit,
-    attachedFilesCount: Int
+    onBackPressed: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
     val scroll = rememberScrollState()
@@ -205,29 +202,9 @@ fun FeedbackScreenDM(
 
             Spacer(Modifier.height(12.dp))
 
-            SectionCard(title = "Attachments (Optional)") {
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Button(
-                        onClick = onImageAttach,
-                        colors = ButtonDefaults.buttonColors(containerColor = colors.surfaceVariant)
-                    ) { Text("Attach Image", color = colors.onSurface) }
-
-                    Button(
-                        onClick = onLogsAttach,
-                        colors = ButtonDefaults.buttonColors(containerColor = colors.surfaceVariant)
-                    ) { Text("Attach Logs", color = colors.onSurface) }
-                }
-                if (attachedFilesCount > 0) {
-                    Spacer(Modifier.height(8.dp))
-                    Text(
-                        text = "\uD83D\uDCCE $attachedFilesCount file(s) attached",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = colors.tertiary
-                    )
-                }
-                Spacer(Modifier.height(8.dp))
+            SectionCard(title = "GitHub Issue") {
                 Text(
-                    text = "Images and logs help us diagnose issues faster. Your data stays private and is only used for support.",
+                    text = "This will open a pre-filled issue on GitHub. Attach screenshots or sanitized logs on GitHub only if you want to share them publicly.",
                     style = MaterialTheme.typography.bodySmall,
                     color = colors.onSurfaceVariant
                 )
@@ -242,7 +219,7 @@ fun FeedbackScreenDM(
                 Button(
                     onClick = { onSendFeedback(feedbackType, priority, category, subject.text, description.text, steps.text) },
                     colors = ButtonDefaults.buttonColors(containerColor = colors.primary)
-                ) { Text("Send", color = Color.Black) }
+                ) { Text("Open GitHub Issue", color = Color.Black) }
 
                 Button(
                     onClick = onBackPressed,

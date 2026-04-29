@@ -43,7 +43,7 @@ class AIProcessingManager(
     }
 
     /**
-     * Check if user is in Simple mode and should use forced fallback API keys
+     * Check whether Simple Mode should restrict advanced provider selection.
      */
     private fun isSimpleModeForcedFallback(): Boolean {
         return settingsManager.isSimpleMode()
@@ -421,11 +421,9 @@ class AIProcessingManager(
             val resolvedModel = aiModel
             val userApiKey = secureApiKeyManager.getApiKey("openai_api_key") ?: ""
 
-            // Force Simple mode users to use default OpenAI API key
+            // Simple Mode does not embed fallback provider keys.
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default OpenAI API key")
-                // For OpenAI, we don't have a default key, so we'll return an error
-                // This ensures Simple mode users can't use OpenAI services
+                Log.d("AIProcessingManager", "Simple mode: OpenAI requires switching to Pro mode and configuring a key")
                 return "Error: OpenAI not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -572,11 +570,9 @@ class AIProcessingManager(
 
             val userApiKey = secureApiKeyManager.getApiKey("google_api_key") ?: ""
 
-            // Force Simple mode users to use default Google API key
+            // Simple Mode does not embed fallback provider keys.
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default Google API key")
-                // For Google, we don't have a default key, so we'll return an error
-                // This ensures Simple mode users can't use Google services
+                Log.d("AIProcessingManager", "Simple mode: Google Gemini requires switching to Pro mode and configuring a key")
                 return@withContext "Error: Google Gemini not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -726,11 +722,9 @@ class AIProcessingManager(
 
             val userApiKey = secureApiKeyManager.getApiKey("anthropic_api_key") ?: ""
 
-            // Force Simple mode users to use default Claude API key
+            // Simple Mode does not embed fallback provider keys.
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default Claude API key")
-                // For Claude, we don't have a default key, so we'll return an error
-                // This ensures Simple mode users can't use Claude services
+                Log.d("AIProcessingManager", "Simple mode: Claude requires switching to Pro mode and configuring a key")
                 return@withContext "Error: Claude not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1101,11 +1095,9 @@ class AIProcessingManager(
 
             val userApiKey = secureApiKeyManager.getApiKey("openrouter_api_key") ?: ""
 
-            // Force Simple mode users to use default OpenRouter API key
+            // Simple Mode does not embed fallback provider keys.
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default OpenRouter API key")
-                // For OpenRouter, we don't have a default key, so we'll return an error
-                // This ensures Simple mode users can't use OpenRouter services
+                Log.d("AIProcessingManager", "Simple mode: OpenRouter requires switching to Pro mode and configuring a key")
                 return@withContext "Error: OpenRouter not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1321,7 +1313,7 @@ class AIProcessingManager(
             val userApiKey = secureApiKeyManager.getApiKey("openai_api_key") ?: ""
 
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default OpenAI API key")
+                Log.d("AIProcessingManager", "Simple mode: OpenAI requires switching to Pro mode and configuring a key")
                 return "Error: OpenAI not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1411,7 +1403,7 @@ class AIProcessingManager(
             val userApiKey = secureApiKeyManager.getApiKey("openai_api_key") ?: ""
 
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default OpenAI API key")
+                Log.d("AIProcessingManager", "Simple mode: OpenAI requires switching to Pro mode and configuring a key")
                 return "Error: OpenAI not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1472,11 +1464,9 @@ class AIProcessingManager(
         try {
             val userApiKey = secureApiKeyManager.getApiKey("google_api_key") ?: ""
 
-            // Force Simple mode users to use default Google API key
+            // Simple Mode does not embed fallback provider keys.
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default Google API key")
-                // For Google, we don't have a default key, so we'll return an error
-                // This ensures Simple mode users can't use Google services
+                Log.d("AIProcessingManager", "Simple mode: Google Gemini requires switching to Pro mode and configuring a key")
                 return@withContext "Error: Google Gemini not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1555,7 +1545,7 @@ class AIProcessingManager(
             val userApiKey = secureApiKeyManager.getApiKey("google_api_key") ?: ""
 
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default Google API key")
+                Log.d("AIProcessingManager", "Simple mode: Google Gemini requires switching to Pro mode and configuring a key")
                 return "Error: Google Gemini not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1623,11 +1613,9 @@ class AIProcessingManager(
         try {
             val userApiKey = secureApiKeyManager.getApiKey("anthropic_api_key") ?: ""
 
-            // Force Simple mode users to use default Claude API key
+            // Simple Mode does not embed fallback provider keys.
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default Claude API key")
-                // For Claude, we don't have a default key, so we'll return an error
-                // This ensures Simple mode users can't use Claude services
+                Log.d("AIProcessingManager", "Simple mode: Claude requires switching to Pro mode and configuring a key")
                 return@withContext "Error: Claude not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1713,7 +1701,7 @@ class AIProcessingManager(
             val userApiKey = secureApiKeyManager.getApiKey("anthropic_api_key") ?: ""
 
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default Claude API key")
+                Log.d("AIProcessingManager", "Simple mode: Claude requires switching to Pro mode and configuring a key")
                 return "Error: Claude not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey
@@ -1875,7 +1863,7 @@ class AIProcessingManager(
             val userApiKey = secureApiKeyManager.getApiKey("openrouter_api_key") ?: ""
 
             val apiKey = if (isSimpleModeForcedFallback()) {
-                Log.d("AIProcessingManager", "Simple mode: Forcing use of default OpenRouter API key")
+                Log.d("AIProcessingManager", "Simple mode: OpenRouter requires switching to Pro mode and configuring a key")
                 return "Error: OpenRouter not available in Simple mode"
             } else if (userApiKey.isNotBlank()) {
                 userApiKey

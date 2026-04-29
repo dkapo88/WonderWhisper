@@ -5,11 +5,9 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,25 +34,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.core.content.FileProvider
 import androidx.core.view.WindowCompat
-import com.slumdog88.dictationkeyboardai.utils.LogStorageManager
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
 class FeedbackActivity : ComponentActivity() {
-    
-    private val attachedFiles = mutableListOf<Uri>()
-    
-    // Activity result launcher for selecting images
-    private val imageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        if (uri != null) {
-            attachedFiles.add(uri)
-            Toast.makeText(this, "Image attached", Toast.LENGTH_SHORT).show()
-        }
-    }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -73,64 +58,19 @@ class FeedbackActivity : ComponentActivity() {
                         modifier = androidx.compose.ui.Modifier.padding(innerPadding)
                     ) {
                         com.slumdog88.dictationkeyboardai.ui.screens.FeedbackScreenDM(
-                            onImageAttach = { imageLauncher.launch("image/*") },
-                            onLogsAttach = { attachLogs() },
                             onSendFeedback = { type, priority, category, subject, description, steps ->
                                 sendFeedback(type, priority, category, subject, description, steps)
                             },
-                            onBackPressed = { finish() },
-                            attachedFilesCount = attachedFiles.size
+                            onBackPressed = { finish() }
                         )
                     }
                 }
             }
         }
     }
-    
-    
-    private fun attachLogs() {
-        try {
-            val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-            val fileName = "feedback_logs_$timeStamp.txt"
-            val storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
-            val logFile = File(storageDir, fileName)
-            
-            // Collect app logs and device info
-            val logs = buildString {
-                append("=== FEEDBACK LOGS ===\n")
-                append("Timestamp: ${SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())}\n")
-                append("App Version: ${getAppVersion()}\n")
-                append("Device: ${Build.MANUFACTURER} ${Build.MODEL}\n")
-                append("Android Version: ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})\n")
-                append("Available Memory: ${getAvailableMemory()}\n")
-                append("Free Storage: ${getFreeStorage()}\n\n")
-                
-                append("=== RECENT LOGS ===\n")
-                append(getRecentLogs())
-                append("\n=== SETTINGS ===\n")
-                append(getAppSettings())
-            }
-            
-            logFile.writeText(logs)
-            
-            val logUri = FileProvider.getUriForFile(
-                this,
-                "$packageName.fileprovider",
-                logFile
-            )
-            
-            attachedFiles.add(logUri)
-            Toast.makeText(this, "Logs attached", Toast.LENGTH_SHORT).show()
-            
-        } catch (e: Exception) {
-            Log.e("FeedbackActivity", "Error attaching logs", e)
-            Toast.makeText(this, "Failed to attach logs", Toast.LENGTH_SHORT).show()
-        }
-    }
-    
-    
+
     private fun sendFeedback(feedbackType: String, priority: String, category: String, subject: String, description: String, steps: String) {
-        
+
         if (subject.isBlank()) {
             Toast.makeText(this, "Please enter a subject", Toast.LENGTH_SHORT).show()
             return
@@ -140,56 +80,153 @@ class FeedbackActivity : ComponentActivity() {
             Toast.makeText(this, "Please enter a description", Toast.LENGTH_SHORT).show()
             return
         }
-        
-        val emailSubject = "[WonderWhisper] $feedbackType - $subject"
-        val emailBody = buildString {
-            append("FEEDBACK TYPE: $feedbackType\n")
-            append("PRIORITY: $priority\n")
-            append("CATEGORY: $category\n")
-            append("DEVICE: ${Build.MANUFACTURER} ${Build.MODEL}\n")
-            append("ANDROID VERSION: ${Build.VERSION.RELEASE}\n")
-            append("APP VERSION: ${getAppVersion()}\n\n")
-            
-            append("DESCRIPTION:\n")
-            append("$description\n\n")
-            
-            if (steps.isNotBlank() && (feedbackType == "Bug Report" || feedbackType == "Performance Issue")) {
-                append("STEPS TO REPRODUCE:\n")
-                append("$steps\n\n")
-            }
-            
-            append("DEVICE INFO:\n")
-            append("- Device: ${Build.MANUFACTURER} ${Build.MODEL}\n")
-            append("- Android: ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})\n")
-            append("- App Version: ${getAppVersion()}\n")
-            append("- Available Memory: ${getAvailableMemory()}\n")
-            append("- Free Storage: ${getFreeStorage()}\n")
-            append("- Timestamp: ${SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())}\n\n")
-            
-            append("Thank you for your feedback!\n")
-            append("This message was generated by WonderWhisper Feedback System")
-        }
-        
-        val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE).apply {
-            type = "message/rfc822"
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("dev@dashfit.sg"))
-            putExtra(Intent.EXTRA_SUBJECT, emailSubject)
-            putExtra(Intent.EXTRA_TEXT, emailBody)
-            
-            if (attachedFiles.isNotEmpty()) {
-                putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(attachedFiles))
-            }
-            
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        }
-        
+
+        val issueUri = buildGitHubIssueUri(
+            feedbackType = feedbackType,
+            priority = priority,
+            category = category,
+            subject = subject.trim(),
+            description = description.trim(),
+            steps = steps.trim()
+        )
+        val issueIntent = Intent(Intent.ACTION_VIEW, issueUri)
+
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send Feedback"))
-            Toast.makeText(this, "Opening email client...", Toast.LENGTH_SHORT).show()
+            startActivity(issueIntent)
+            Toast.makeText(this, "Opening GitHub issue...", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            Log.e("FeedbackActivity", "Error sending feedback", e)
-            Toast.makeText(this, "No email client found", Toast.LENGTH_SHORT).show()
+            Log.e("FeedbackActivity", "Error opening GitHub issue", e)
+            Toast.makeText(this, "No browser found to open GitHub", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun buildGitHubIssueUri(
+        feedbackType: String,
+        priority: String,
+        category: String,
+        subject: String,
+        description: String,
+        steps: String
+    ): Uri {
+        val isBug = feedbackType == "Bug Report" || feedbackType == "Performance Issue"
+        val isFeature = feedbackType == "Feature Request"
+        val titlePrefix = when {
+            isBug -> "[Bug]"
+            isFeature -> "[Feature]"
+            else -> "[Feedback]"
+        }
+
+        val builder = Uri.Builder()
+            .scheme("https")
+            .authority("github.com")
+            .appendPath("dkapo88")
+            .appendPath("WonderWhisper")
+            .appendPath("issues")
+            .appendPath("new")
+            .appendQueryParameter("title", "$titlePrefix: $subject")
+            .appendQueryParameter(
+                "body",
+                buildGitHubIssueBody(
+                    feedbackType = feedbackType,
+                    priority = priority,
+                    category = category,
+                    description = description,
+                    steps = steps,
+                    isBug = isBug,
+                    isFeature = isFeature
+                )
+            )
+
+        when {
+            isBug -> builder.appendQueryParameter("template", "bug_report.md")
+            isFeature -> builder.appendQueryParameter("template", "feature_request.md")
+        }
+
+        return builder.build()
+    }
+
+    private fun buildGitHubIssueBody(
+        feedbackType: String,
+        priority: String,
+        category: String,
+        description: String,
+        steps: String,
+        isBug: Boolean,
+        isFeature: Boolean
+    ): String {
+        return when {
+            isBug -> buildBugIssueBody(feedbackType, priority, category, description, steps)
+            isFeature -> buildFeatureIssueBody(priority, category, description)
+            else -> buildGeneralIssueBody(feedbackType, priority, category, description)
+        }
+    }
+
+    private fun buildBugIssueBody(
+        feedbackType: String,
+        priority: String,
+        category: String,
+        description: String,
+        steps: String
+    ): String = buildString {
+        append("## What happened?\n\n")
+        append(description)
+        append("\n\n")
+        append("## Expected behavior\n\n")
+        append("_Please describe what you expected to happen._\n\n")
+        append("## Steps to reproduce\n\n")
+        if (steps.isBlank()) {
+            append("_No steps provided._\n\n")
+        } else {
+            append(steps)
+            append("\n\n")
+        }
+        append("## Device and app details\n\n")
+        appendDeviceDetails(feedbackType, priority, category)
+        append("\n## Logs\n\n")
+        append("Please attach screenshots or sanitized logs manually if they help. Remove API keys, transcripts, and other private content before posting.\n")
+    }
+
+    private fun buildFeatureIssueBody(
+        priority: String,
+        category: String,
+        description: String
+    ): String = buildString {
+        append("## Workflow\n\n")
+        append(description)
+        append("\n\n")
+        append("## Current limitation\n\n")
+        append("_What does WonderWhisper not handle well today?_\n\n")
+        append("## Proposed behavior\n\n")
+        append("_What should happen instead?_\n\n")
+        append("## Alternatives considered\n\n")
+        append("_Any workarounds or related apps/features?_\n\n")
+        append("## App details\n\n")
+        appendDeviceDetails("Feature Request", priority, category)
+    }
+
+    private fun buildGeneralIssueBody(
+        feedbackType: String,
+        priority: String,
+        category: String,
+        description: String
+    ): String = buildString {
+        append("## Feedback\n\n")
+        append(description)
+        append("\n\n")
+        append("## App details\n\n")
+        appendDeviceDetails(feedbackType, priority, category)
+    }
+
+    private fun StringBuilder.appendDeviceDetails(feedbackType: String, priority: String, category: String) {
+        append("- Feedback type: $feedbackType\n")
+        append("- Priority: $priority\n")
+        append("- Category: $category\n")
+        append("- Device: ${Build.MANUFACTURER} ${Build.MODEL}\n")
+        append("- Android version: ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})\n")
+        append("- App version: ${getAppVersion()}\n")
+        append("- Available memory: ${getAvailableMemory()}\n")
+        append("- Free storage: ${getFreeStorage()}\n")
+        append("- Timestamp: ${SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())}\n")
     }
     
     private fun getAppVersion(): String {
@@ -222,30 +259,6 @@ class FeedbackActivity : ComponentActivity() {
         }
     }
     
-    private fun getRecentLogs(): String {
-        val logs = LogStorageManager.getInstance(this).readLogs()
-        
-        return if (logs.isNotBlank()) {
-            val logLines = logs.split("\n")
-            val recentLines = logLines.take(20) // Last 20 lines
-            recentLines.joinToString("\n")
-        } else {
-            "No recent logs available"
-        }
-    }
-    
-    private fun getAppSettings(): String {
-        val prefs = getSharedPreferences("app_settings", android.content.Context.MODE_PRIVATE)
-        return buildString {
-            append("- Transcription Service: ${prefs.getString("transcription_service", "Not set")}\n")
-            append("- AI Model: ${prefs.getString("ai_model", "Not set")}\n")
-            append("- Post-processing: ${prefs.getBoolean("enable_postprocess", false)}\n")
-            append("- Paragraph Formatting: ${prefs.getBoolean("enable_paragraphs", false)}\n")
-            append("- Custom Vocabulary: ${if (prefs.getString("custom_vocabulary", "")?.isNotBlank() == true) "Yes" else "No"}\n")
-            append("- Custom Spelling: ${if (prefs.getString("custom_spelling", "")?.isNotBlank() == true) "Yes" else "No"}\n")
-        }
-    }
-    
     private fun performHapticFeedback() {
         HapticUtils.performHapticFeedback(this)
     }
@@ -253,11 +266,8 @@ class FeedbackActivity : ComponentActivity() {
 
 @Composable
 fun FeedbackScreen(
-    onImageAttach: () -> Unit,
-    onLogsAttach: () -> Unit,
     onSendFeedback: (String, String, String, String, String, String) -> Unit,
-    onBackPressed: () -> Unit,
-    attachedFilesCount: Int
+    onBackPressed: () -> Unit
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
@@ -454,11 +464,11 @@ fun FeedbackScreen(
             
             Spacer(modifier = Modifier.height(16.dp))
             
-            // Attachments Card
+            // GitHub issue card
             BrutalistCard(accentColor = limeColor) {
                 Column {
                     Text(
-                        text = "Attachments (Optional)",
+                        text = "GitHub Issue",
                         style = TextStyle(
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
@@ -467,45 +477,9 @@ fun FeedbackScreen(
                         ),
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
-                    
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        BrutalistSecondaryButton(
-                            text = "📷 ATTACH IMAGE",
-                            onClick = {
-                                HapticUtils.performHapticFeedback(context)
-                                onImageAttach()
-                            },
-                            modifier = Modifier.weight(1f)
-                        )
-                        
-                        BrutalistSecondaryButton(
-                            text = "📋 LOGS",
-                            onClick = {
-                                HapticUtils.performHapticFeedback(context)
-                                onLogsAttach()
-                            },
-                            modifier = Modifier.weight(1f)
-                        )
-                    }
-                    
-                    if (attachedFilesCount > 0) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "📎 $attachedFilesCount file(s) attached",
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                color = limeColor,
-                                fontFamily = FontFamily.SansSerif
-                            )
-                        )
-                    }
-                    
-                    Spacer(modifier = Modifier.height(16.dp))
-                    
+
                     Text(
-                        text = "ℹ Images and logs help us understand and fix issues faster. You can attach screenshots, photos, or other images. Your data stays private and is only used for support purposes.",
+                        text = "This will open a pre-filled issue on GitHub. Attach screenshots or sanitized logs on GitHub only if you want to share them publicly.",
                         style = TextStyle(
                             fontSize = 12.sp,
                             color = Color(0xFF888888),
@@ -520,7 +494,7 @@ fun FeedbackScreen(
             
             // Send Button
             BrutalistActionButton(
-                text = "📧 SEND FEEDBACK",
+                text = "OPEN GITHUB ISSUE",
                 onClick = {
                     HapticUtils.performHapticFeedback(context)
                     onSendFeedback(feedbackType, priority, category, subject.text, description.text, steps.text)

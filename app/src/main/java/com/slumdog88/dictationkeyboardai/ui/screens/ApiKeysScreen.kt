@@ -22,14 +22,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.slumdog88.dictationkeyboardai.ui.components.BrutalistActionButton
-import com.slumdog88.dictationkeyboardai.ui.components.BrutalCard
-
 @Composable
 fun ApiKeysScreen(
     onSave: (Map<String, String>) -> Unit,
     onBack: () -> Unit,
-    initialKeys: Map<String, String> = emptyMap()
+    initialKeys: Map<String, String> = emptyMap(),
+    isSimpleMode: Boolean = false
 ) {
     // State management for all API keys
     var openaiKey by remember { mutableStateOf(TextFieldValue(initialKeys["openai_api_key"] ?: "")) }
@@ -66,123 +64,139 @@ fun ApiKeysScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // OpenAI API Key
-        ApiKeyInputSection(
-            title = "OpenAI API Key",
-            value = openaiKey,
-            onValueChange = { openaiKey = it },
-            placeholder = "Enter OpenAI API key",
-            accentColor = accentColor
-        )
+        if (isSimpleMode) {
+            SimpleModeGroqInstructions()
 
-        // ElevenLabs API Key
-        ApiKeyInputSection(
-            title = "ElevenLabs API Key",
-            value = elevenlabsKey,
-            onValueChange = { elevenlabsKey = it },
-            placeholder = "Enter ElevenLabs API key",
-            accentColor = accentColor
-        )
+            ApiKeyInputSection(
+                title = "Groq API Key",
+                value = groqKey,
+                onValueChange = { groqKey = it },
+                placeholder = "Paste your Groq API key",
+                accentColor = accentColor
+            )
+        } else {
+            // OpenAI API Key
+            ApiKeyInputSection(
+                title = "OpenAI API Key",
+                value = openaiKey,
+                onValueChange = { openaiKey = it },
+                placeholder = "Enter OpenAI API key",
+                accentColor = accentColor
+            )
 
-        // Groq API Key (optional when hosted proxy is configured)
-        ApiKeyInputSection(
-            title = "Groq API Key (Optional)",
-            value = groqKey,
-            onValueChange = { groqKey = it },
-            placeholder = "Enter Groq API key if you want to use your own account",
-            accentColor = accentColor
-        )
+            // ElevenLabs API Key
+            ApiKeyInputSection(
+                title = "ElevenLabs API Key",
+                value = elevenlabsKey,
+                onValueChange = { elevenlabsKey = it },
+                placeholder = "Enter ElevenLabs API key",
+                accentColor = accentColor
+            )
 
-        // Google AI API Key
-        ApiKeyInputSection(
-            title = "Google AI API Key",
-            value = googleKey,
-            onValueChange = { googleKey = it },
-            placeholder = "Enter Google AI API key",
-            accentColor = accentColor
-        )
+            // Groq API Key (optional when hosted proxy is configured)
+            ApiKeyInputSection(
+                title = "Groq API Key (Optional)",
+                value = groqKey,
+                onValueChange = { groqKey = it },
+                placeholder = "Enter Groq API key if you want to use your own account",
+                accentColor = accentColor
+            )
 
-        // Deepgram API Key
-        ApiKeyInputSection(
-            title = "Deepgram API Key",
-            value = deepgramKey,
-            onValueChange = { deepgramKey = it },
-            placeholder = "Enter Deepgram API key",
-            accentColor = accentColor
-        )
+            // Google AI API Key
+            ApiKeyInputSection(
+                title = "Google AI API Key",
+                value = googleKey,
+                onValueChange = { googleKey = it },
+                placeholder = "Enter Google AI API key",
+                accentColor = accentColor
+            )
 
-        // AssemblyAI API Key
-        ApiKeyInputSection(
-            title = "AssemblyAI API Key",
-            value = assemblyaiKey,
-            onValueChange = { assemblyaiKey = it },
-            placeholder = "Enter AssemblyAI API key",
-            accentColor = accentColor
-        )
+            // Deepgram API Key
+            ApiKeyInputSection(
+                title = "Deepgram API Key",
+                value = deepgramKey,
+                onValueChange = { deepgramKey = it },
+                placeholder = "Enter Deepgram API key",
+                accentColor = accentColor
+            )
 
-        // Anthropic API Key
-        ApiKeyInputSection(
-            title = "Anthropic API Key",
-            value = anthropicKey,
-            onValueChange = { anthropicKey = it },
-            placeholder = "Enter Anthropic API key",
-            accentColor = accentColor
-        )
+            // AssemblyAI API Key
+            ApiKeyInputSection(
+                title = "AssemblyAI API Key",
+                value = assemblyaiKey,
+                onValueChange = { assemblyaiKey = it },
+                placeholder = "Enter AssemblyAI API key",
+                accentColor = accentColor
+            )
 
-        // Mistral API Key
-        ApiKeyInputSection(
-            title = "Mistral API Key",
-            value = mistralKey,
-            onValueChange = { mistralKey = it },
-            placeholder = "Enter Mistral API key",
-            accentColor = accentColor
-        )
- 
-        // Cerebras API Key
-        ApiKeyInputSection(
-            title = "Cerebras API Key",
-            value = cerebrasKey,
-            onValueChange = { cerebrasKey = it },
-            placeholder = "Enter Cerebras API key",
-            accentColor = accentColor
-        )
+            // Anthropic API Key
+            ApiKeyInputSection(
+                title = "Anthropic API Key",
+                value = anthropicKey,
+                onValueChange = { anthropicKey = it },
+                placeholder = "Enter Anthropic API key",
+                accentColor = accentColor
+            )
 
-        // Soniox API Key
-        ApiKeyInputSection(
-            title = "Soniox API Key",
-            value = sonioxKey,
-            onValueChange = { sonioxKey = it },
-            placeholder = "Enter Soniox API key",
-            accentColor = accentColor
-        )
+            // Mistral API Key
+            ApiKeyInputSection(
+                title = "Mistral API Key",
+                value = mistralKey,
+                onValueChange = { mistralKey = it },
+                placeholder = "Enter Mistral API key",
+                accentColor = accentColor
+            )
 
-        // OpenRouter API Key
-        ApiKeyInputSection(
-            title = "OpenRouter API Key",
-            value = openrouterKey,
-            onValueChange = { openrouterKey = it },
-            placeholder = "Enter OpenRouter API key",
-            accentColor = accentColor
-        )
+            // Cerebras API Key
+            ApiKeyInputSection(
+                title = "Cerebras API Key",
+                value = cerebrasKey,
+                onValueChange = { cerebrasKey = it },
+                placeholder = "Enter Cerebras API key",
+                accentColor = accentColor
+            )
+
+            // Soniox API Key
+            ApiKeyInputSection(
+                title = "Soniox API Key",
+                value = sonioxKey,
+                onValueChange = { sonioxKey = it },
+                placeholder = "Enter Soniox API key",
+                accentColor = accentColor
+            )
+
+            // OpenRouter API Key
+            ApiKeyInputSection(
+                title = "OpenRouter API Key",
+                value = openrouterKey,
+                onValueChange = { openrouterKey = it },
+                placeholder = "Enter OpenRouter API key",
+                accentColor = accentColor
+            )
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
         // Save Button (Material)
         androidx.compose.material3.Button(
             onClick = {
-                val keys = mapOf(
-                    "openai_api_key" to openaiKey.text.trim(),
-                    "elevenlabs_api_key" to elevenlabsKey.text.trim(),
-                    "groq_api_key" to groqKey.text.trim(),
-                    "google_api_key" to googleKey.text.trim(),
-                    "deepgram_api_key" to deepgramKey.text.trim(),
-                    "assemblyai_api_key" to assemblyaiKey.text.trim(),
-                    "anthropic_api_key" to anthropicKey.text.trim(),
-                    "mistral_api_key" to mistralKey.text.trim(),
-                    "openrouter_api_key" to openrouterKey.text.trim(),
-                    "cerebras_api_key" to cerebrasKey.text.trim(),
-                    "soniox_api_key" to sonioxKey.text.trim()
-                )
+                val keys = if (isSimpleMode) {
+                    mapOf("groq_api_key" to groqKey.text.trim())
+                } else {
+                    mapOf(
+                        "openai_api_key" to openaiKey.text.trim(),
+                        "elevenlabs_api_key" to elevenlabsKey.text.trim(),
+                        "groq_api_key" to groqKey.text.trim(),
+                        "google_api_key" to googleKey.text.trim(),
+                        "deepgram_api_key" to deepgramKey.text.trim(),
+                        "assemblyai_api_key" to assemblyaiKey.text.trim(),
+                        "anthropic_api_key" to anthropicKey.text.trim(),
+                        "mistral_api_key" to mistralKey.text.trim(),
+                        "openrouter_api_key" to openrouterKey.text.trim(),
+                        "cerebras_api_key" to cerebrasKey.text.trim(),
+                        "soniox_api_key" to sonioxKey.text.trim()
+                    )
+                }
                 onSave(keys)
             },
             modifier = Modifier.fillMaxWidth(),
@@ -205,6 +219,57 @@ fun ApiKeysScreen(
         }
 
         Spacer(modifier = Modifier.height(32.dp))
+    }
+}
+
+@Composable
+private fun SimpleModeGroqInstructions() {
+    androidx.compose.material3.Card(
+        shape = com.slumdog88.dictationkeyboardai.ui.theme.Radii.large,
+        colors = androidx.compose.material3.CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        elevation = androidx.compose.material3.CardDefaults.cardElevation(defaultElevation = 6.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Text(
+                text = "Simple Mode uses Groq",
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+
+            Text(
+                text = "WonderWhisper does not include a built-in Groq key. To use cloud transcription and AI cleanup in Simple Mode:",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = """
+1. Go to https://console.groq.com/keys
+2. Sign in or create a Groq account.
+3. Create a new API key.
+4. Copy the key once and keep it private.
+5. Paste it below and tap Save.
+                """.trimIndent(),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Do not paste your API key into chats, public issues, screenshots, or anywhere you do not trust.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
     }
 }
 

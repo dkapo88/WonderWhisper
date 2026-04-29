@@ -37,7 +37,7 @@ class TranscriptionServiceManager(
 ) {
 
     /**
-     * Check if user is in Simple mode and should use forced fallback API keys
+     * Check whether Simple Mode should use the recommended provider defaults.
      */
     private fun isSimpleModeForcedFallback(): Boolean {
         return settingsManager.isSimpleMode()
