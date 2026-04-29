@@ -1,0 +1,49 @@
+<svg width="1200" height="300" viewBox="0 0 1200 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">WonderWhisper providers and app modes</title>
+  <desc id="desc">A visual strip listing provider flexibility, simple and pro modes, local API key storage, command mode, logs, and optional proxy support.</desc>
+  <rect width="1200" height="300" rx="28" fill="#0B1216"/>
+  <text x="52" y="64" fill="#EAF7F4" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="760">Built for provider choice and local control</text>
+  <text x="52" y="101" fill="#9FB8B8" font-family="Inter, Arial, sans-serif" font-size="20">Bring your own API keys, switch modes, and keep the app useful across different Android workflows.</text>
+
+  <g transform="translate(52 142)">
+    <rect width="164" height="96" rx="18" fill="#102326" stroke="#2D5D62"/>
+    <text x="24" y="40" fill="#53D6C5" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760">Transcription</text>
+    <text x="24" y="68" fill="#C9DFDB" font-family="Inter, Arial, sans-serif" font-size="15">Groq, OpenAI,</text>
+    <text x="24" y="88" fill="#C9DFDB" font-family="Inter, Arial, sans-serif" font-size="15">Gemini, Soniox</text>
+  </g>
+
+  <g transform="translate(236 142)">
+    <rect width="164" height="96" rx="18" fill="#251F12" stroke="#6C5421"/>
+    <text x="24" y="40" fill="#F2B84B" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760">AI cleanup</text>
+    <text x="24" y="68" fill="#F4E6C5" font-family="Inter, Arial, sans-serif" font-size="15">OpenAI, Claude,</text>
+    <text x="24" y="88" fill="#F4E6C5" font-family="Inter, Arial, sans-serif" font-size="15">Mistral, Groq</text>
+  </g>
+
+  <g transform="translate(420 142)">
+    <rect width="164" height="96" rx="18" fill="#261E29" stroke="#624463"/>
+    <text x="24" y="40" fill="#D690FF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760">App modes</text>
+    <text x="24" y="68" fill="#E9D8F2" font-family="Inter, Arial, sans-serif" font-size="15">Simple defaults</text>
+    <text x="24" y="88" fill="#E9D8F2" font-family="Inter, Arial, sans-serif" font-size="15">and Pro control</text>
+  </g>
+
+  <g transform="translate(604 142)">
+    <rect width="164" height="96" rx="18" fill="#102326" stroke="#2D5D62"/>
+    <text x="24" y="40" fill="#53D6C5" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760">Local keys</text>
+    <text x="24" y="68" fill="#C9DFDB" font-family="Inter, Arial, sans-serif" font-size="15">Encrypted storage</text>
+    <text x="24" y="88" fill="#C9DFDB" font-family="Inter, Arial, sans-serif" font-size="15">on device</text>
+  </g>
+
+  <g transform="translate(788 142)">
+    <rect width="164" height="96" rx="18" fill="#251F12" stroke="#6C5421"/>
+    <text x="24" y="40" fill="#F2B84B" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760">Command mode</text>
+    <text x="24" y="68" fill="#F4E6C5" font-family="Inter, Arial, sans-serif" font-size="15">Rewrite, answer,</text>
+    <text x="24" y="88" fill="#F4E6C5" font-family="Inter, Arial, sans-serif" font-size="15">format, transform</text>
+  </g>
+
+  <g transform="translate(972 142)">
+    <rect width="164" height="96" rx="18" fill="#261E29" stroke="#624463"/>
+    <text x="24" y="40" fill="#D690FF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760">Proxy ready</text>
+    <text x="24" y="68" fill="#E9D8F2" font-family="Inter, Arial, sans-serif" font-size="15">Optional Worker</text>
+    <text x="24" y="88" fill="#E9D8F2" font-family="Inter, Arial, sans-serif" font-size="15">for private builds</text>
+  </g>
+</svg>

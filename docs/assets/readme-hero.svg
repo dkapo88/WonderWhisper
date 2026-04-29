@@ -1,0 +1,69 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">WonderWhisper open source Android dictation app</title>
+  <desc id="desc">A stylized Android phone showing WonderWhisper's floating dictation bubble, transcript cleanup, and text insertion flow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071314"/>
+      <stop offset="0.55" stop-color="#102326"/>
+      <stop offset="1" stop-color="#1A1F2E"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="729" y1="67" x2="1037" y2="455" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182B31"/>
+      <stop offset="1" stop-color="#0B1216"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#53D6C5"/>
+      <stop offset="1" stop-color="#F2B84B"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="520" rx="32" fill="url(#bg)"/>
+  <path d="M85 395C225 302 325 371 451 278C578 184 645 116 796 139C947 162 1008 67 1126 105" stroke="#53D6C5" stroke-opacity="0.16" stroke-width="2"/>
+  <path d="M90 421C252 346 363 422 491 329C620 236 748 260 884 206C1015 154 1063 179 1135 210" stroke="#F2B84B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <g transform="translate(86 88)">
+    <rect x="0" y="0" width="96" height="96" rx="24" fill="#101F24" stroke="#31565B"/>
+    <path d="M24 23L39 75L49 42L60 75L75 23" stroke="url(#accent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="0" y="143" fill="#EAF7F4" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="760">WonderWhisper</text>
+    <text x="2" y="189" fill="#9FB8B8" font-family="Inter, Arial, sans-serif" font-size="28">Open-source Android dictation with AI cleanup</text>
+
+    <g transform="translate(0 238)">
+      <rect width="168" height="48" rx="24" fill="#12282D" stroke="#2D5D62"/>
+      <circle cx="29" cy="24" r="9" fill="#53D6C5"/>
+      <text x="52" y="31" fill="#EAF7F4" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">Floating bubble</text>
+
+      <rect x="188" width="166" height="48" rx="24" fill="#251F12" stroke="#6C5421"/>
+      <circle cx="217" cy="24" r="9" fill="#F2B84B"/>
+      <text x="240" y="31" fill="#FFF5D7" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">Bring your keys</text>
+
+      <rect x="374" width="136" height="48" rx="24" fill="#261E29" stroke="#624463"/>
+      <circle cx="403" cy="24" r="9" fill="#D690FF"/>
+      <text x="426" y="31" fill="#F7E9FF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="650">MIT License</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)" transform="translate(735 54)">
+    <rect x="0" y="0" width="326" height="420" rx="42" fill="url(#phone)" stroke="#40595D" stroke-width="2"/>
+    <rect x="24" y="30" width="278" height="360" rx="28" fill="#071113"/>
+    <rect x="118" y="18" width="90" height="8" rx="4" fill="#223A3E"/>
+
+    <text x="48" y="80" fill="#EAF7F4" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="720">Message</text>
+    <rect x="48" y="104" width="214" height="40" rx="20" fill="#12282D"/>
+    <text x="68" y="130" fill="#D3ECE8" font-family="Inter, Arial, sans-serif" font-size="15">Drafting from voice...</text>
+
+    <rect x="48" y="166" width="230" height="96" rx="18" fill="#0F1E22" stroke="#2D5D62"/>
+    <text x="68" y="198" fill="#9FB8B8" font-family="Inter, Arial, sans-serif" font-size="15">AI cleanup</text>
+    <text x="68" y="227" fill="#EAF7F4" font-family="Inter, Arial, sans-serif" font-size="17">Clear, formatted text</text>
+
+    <rect x="48" y="286" width="176" height="40" rx="20" fill="#251F12" stroke="#6C5421"/>
+    <text x="68" y="312" fill="#FFF5D7" font-family="Inter, Arial, sans-serif" font-size="15">Inserted into the app</text>
+
+    <circle cx="260" cy="330" r="42" fill="url(#accent)"/>
+    <path d="M244 330C244 318 251 310 260 310C269 310 276 318 276 330C276 342 269 350 260 350C251 350 244 342 244 330Z" fill="#071113"/>
+    <rect x="256" y="297" width="8" height="34" rx="4" fill="#071113"/>
+    <path d="M239 350C252 364 268 364 281 350" stroke="#071113" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

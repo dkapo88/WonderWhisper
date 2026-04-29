@@ -1,5 +1,7 @@
 # WonderWhisper
 
+![WonderWhisper open source Android dictation app](docs/assets/readme-hero.svg)
+
 WonderWhisper is an Android dictation app that brings a floating voice-to-text button to any text field. It combines cloud transcription providers, AI cleanup, command-mode editing, custom vocabulary, and accessibility-based text insertion so you can dictate into messaging apps, notes, email, browsers, and other Android apps.
 
 This project is now open source under the MIT License. Bring your own API keys for cloud services.
@@ -19,6 +21,8 @@ This project is now open source under the MIT License. Bring your own API keys f
 - Optional Cloudflare Worker Groq proxy scaffold for private/self-hosted builds
 
 ## Supported Providers
+
+![Provider choice and app modes](docs/assets/provider-strip.svg)
 
 Transcription providers include:
 
@@ -59,6 +63,8 @@ Add keys inside the app from **API Keys**. Useful starting points:
 Do not commit API keys, keystores, release artifacts, `.dev.vars`, `local.properties`, or Gradle properties containing secrets.
 
 ## How It Works
+
+![WonderWhisper dictation workflow](docs/assets/dictation-flow.svg)
 
 1. Enable the required Android permissions: microphone, overlay, notification, and accessibility service.
 2. Tap the floating bubble to start recording.
