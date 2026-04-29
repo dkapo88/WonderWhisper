@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme (Night) Neo‑Brutalist -->
+    <style name="Theme.DictationKeyboardAI" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/nb_pink</item>
+        <item name="colorOnPrimary">@color/nb_white</item>
+        <item name="colorSecondary">@color/nb_cyan</item>
+        <item name="colorOnSecondary">@color/nb_white</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/nb_base</item>
+        <item name="backgroundColor">@color/nb_base</item>
+
+        <item name="materialButtonStyle">@style/Brutal.Button</item>
+        <item name="android:buttonStyle">@style/Brutal.Button</item>
+
+        <item name="textAppearanceHeadlineSmall">@style/TextBrutal.Heading24</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextBrutal.Heading28</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextBrutal.Heading32</item>
+        <item name="textAppearanceBodyLarge">@style/TextBrutal.Body18</item>
+    </style>
+
+    <style name="Brutal.Button" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/brutal_button_primary</item>
+        <item name="android:textColor">@color/nb_white</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">@dimen/nb_elev_8</item>
+        <item name="backgroundTint">@null</item>
+        <item name="rippleColor">@android:color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,3 @@
+GROQ_API_KEY=replace_me
+# Optional speed-bump token. If set, the client must send X-App-Proxy-Token.
+APP_PROXY_TOKEN=

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="#FFFFFF">
+    
+    <!-- Outer circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10s10,-4.48 10,-10S17.52,2 12,2zM12,20c-4.41,0 -8,-3.59 -8,-8s3.59,-8 8,-8s8,3.59 8,8S16.41,20 12,20z"/>
+    
+    <!-- Question mark - larger and bolder -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,5.5c-1.38,0 -2.5,1.12 -2.5,2.5h2c0,-0.28 0.22,-0.5 0.5,-0.5s0.5,0.22 0.5,0.5c0,0.5 -1,1 -1.5,1.5V11h2v-1c0,-0.5 1,-1 1.5,-1.5c0.31,-0.31 0.5,-0.69 0.5,-1.5C14.5,6.62 13.38,5.5 12,5.5z"/>
+    
+    <!-- Dot - larger -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M11,13h2v2h-2V13z"/>
+</vector>

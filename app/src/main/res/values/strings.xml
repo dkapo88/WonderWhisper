@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">WonderWhisper</string>
+    <string name="voice_recognizer_label">WonderWhisper Voice</string>
+    <string name="accessibility_service_description">WonderWhisper Accessibility Service: Allows dictation bubble to insert text into focused fields.</string>
+    <string-array name="ai_models">
+        <!-- Default Free Model -->
+        <item>mistral-saba-24b</item>
+        <!-- Groq Models -->
+        <item>groq/openai/gpt-oss-20b</item>
+        <item>openai/gpt-oss-120b</item>
+        <item>meta-llama/llama-4-maverick-17b-128e-instruct</item>
+        <item>moonshotai/kimi-k2-instruct-0905</item>
+        <!-- Google Gemini Models -->
+        <item>gemini-3.1-flash-lite-preview</item>
+        <item>gemini-2.5-pro</item>
+        <item>gemini-2.5-flash</item>
+        <item>gemini-2.0-flash</item>
+        <!-- OpenAI Models -->
+        <item>gpt-5.4-2026-03-05</item>
+        <item>gpt-5-chat-latest</item>
+        <item>gpt-5</item>
+        <item>gpt-5-mini</item>
+        <item>gpt-5-nano</item>
+        <!-- Anthropic Claude Models -->
+        <item>claude-sonnet-4-6</item>
+        <item>claude-opus-4-6</item>
+        <item>claude-3-5-haiku-20241022</item>
+        <item>claude-haiku-4-5</item>
+        <!-- Cerebras Models (Production) -->
+        <item>cerebras/llama-4-scout-17b-16e-instruct</item>
+        <item>cerebras/llama3.1-8b</item>
+        <item>cerebras/llama-3.3-70b</item>
+        <item>cerebras/gpt-oss-120b</item>
+        <item>cerebras/qwen-3-32b</item>
+        <!-- Cerebras Models (Preview - evaluation only) -->
+        <item>cerebras/llama-4-maverick-17b-128e-instruct</item>
+        <item>cerebras/qwen-3-235b-a22b-instruct-2507</item>
+        <item>cerebras/qwen-3-235b-a22b-thinking-2507</item>
+        <item>cerebras/qwen-3-coder-480b</item>
+        <!-- OpenRouter (Unified API) -->
+        <item>OpenRouter</item>
+    </string-array>
+    <string-array name="transcription_services">
+        <!-- Default Free Model -->
+        <item>Groq Whisper v3 Turbo</item>
+        <!-- Premium High-Accuracy Models -->
+        <item>Deepgram Nova-3</item>
+        <!-- Latest Gemini Transcription (2025) -->
+        <item>Gemini 2.5 Flash</item>
+        <item>Gemini 2.5 Pro</item>
+        <item>Gemini 2.0 Flash</item>
+        <!-- High-Accuracy Models -->
+        <item>ElevenLabs Scribe</item>
+        <!-- Fast Groq Models -->
+        <item>Groq Whisper v3 Turbo</item>
+        <item>Groq Whisper v3 Large</item>
+        <!-- OpenAI Models -->
+        <item>GPT-4o Transcribe</item>
+        <item>OpenAI Whisper</item>
+        <!-- Offline -->
+        <item>Offline Whisper (On-Device)</item>
+        <!-- Mistral Voice/Audio -->
+        <item>Mistral Voxtral Mini</item>
+        <!-- Soniox Real-Time -->
+        <item>Soniox Real-Time</item>
+        <!-- Other Services -->
+        <item>AssemblyAI</item>
+    </string-array>
+
+    <string name="keyboard_aware_bubble_title">Keyboard-Aware Bubble</string>
+    <string name="keyboard_aware_bubble_summary">Show bubble only when keyboard is visible</string>
+    <!-- IME strings -->
+    <string name="ime_record">Record / Stop</string>
+    <string name="ime_undo">Undo last insertion</string>
+    <string name="ime_paste">Paste last entry</string>
+    <string name="ime_postprocess">Post-process</string>
+    <string name="ime_ai_short">AI</string>
+    <string name="ime_ai_toggle">AI toggle</string>
+    <string name="ime_switch_keyboard">Switch keyboard</string>
+    <string name="ime_space">Space</string>
+    <string name="ime_expand">Expand keyboard</string>
+    <string name="ime_collapse">Collapse keyboard</string>
+    <string name="ime_backspace">Backspace</string>
+    <string name="ime_return">Return</string>
+    <string name="ime_select_all">Select all text</string>
+    <string name="dictation_started">Dictation started</string>
+    <string name="dictation_stopped">Dictation stopped</string>
+    <string name="no_input_connection">No input connection</string>
+    <string name="nothing_to_undo">Nothing to undo</string>
+    <string name="undo_not_available">Undo not available here</string>
+    <string name="no_last_log">No last entry available</string>
+    <string name="undone">Undone</string>
+    <string name="postprocess_on">Post-processing ON</string>
+    <string name="postprocess_off">Post-processing OFF</string>
+</resources>

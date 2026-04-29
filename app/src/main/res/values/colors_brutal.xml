@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Neo‑Brutalist Palette (dark base) -->
+    <color name="nb_base">#0B0B0F</color>
+    <color name="nb_surface">#0F0F14</color>
+    <color name="nb_surface_alt">#14141A</color>
+
+    <!-- Accents -->
+    <color name="nb_pink">#FF006E</color>
+    <color name="nb_lime">#8AC926</color>
+    <color name="nb_orange">#FF7F00</color>
+    <color name="nb_cyan">#00F5FF</color>
+
+    <!-- Neutrals -->
+    <color name="nb_white">#FFFFFF</color>
+    <color name="nb_gray_100">#F5F5F5</color>
+    <color name="nb_gray_300">#CFCFCF</color>
+    <color name="nb_gray_500">#9A9A9A</color>
+    <color name="nb_gray_700">#5C5C5C</color>
+    <color name="nb_gray_900">#1A1A1A</color>
+
+    <!-- Borders (3–5dp recommended width in drawables) -->
+    <color name="nb_border">#2C1E45</color>
+    <color name="nb_border_strong">#3A275A</color>
+
+    <!-- Shadows -->
+    <color name="nb_shadow">#000000</color>
+
+    <!-- States -->
+    <color name="nb_pressed">#2A1147</color>
+    <color name="nb_disabled">#553A6F</color>
+
+    <!-- Bottom Nav -->
+    <color name="nb_nav_background">#0B0B0F</color>
+    <color name="nb_nav_selected">#FF006E</color>
+    <color name="nb_nav_unselected">#9A9A9A</color>
+</resources>
+

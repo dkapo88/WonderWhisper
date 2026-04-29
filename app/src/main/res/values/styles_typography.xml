@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Neo‑Brutalist Typography -->
+    <style name="TextBrutal" />
+
+    <style name="TextBrutal.Body18" parent="@style/TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/nb_white</item>
+        <item name="fontFamily">@font/geometric_semibold_downloadable</item>
+    </style>
+
+    <style name="TextBrutal.Heading24" parent="@style/TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/nb_white</item>
+        <item name="fontFamily">@font/geometric_bold_downloadable</item>
+    </style>
+
+    <style name="TextBrutal.Heading28" parent="@style/TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/nb_white</item>
+        <item name="fontFamily">@font/geometric_bold_downloadable</item>
+    </style>
+
+    <style name="TextBrutal.Heading32" parent="@style/TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/nb_white</item>
+        <item name="fontFamily">@font/geometric_bold_downloadable</item>
+    </style>
+
+    <!-- Bottom Nav labels -->
+    <style name="Brutal.BottomNavLabel.Active" parent="@style/TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/geometric_bold_downloadable</item>
+    </style>
+    <style name="Brutal.BottomNavLabel.Inactive" parent="@style/TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontFamily">@font/geometric_bold_downloadable</item>
+    </style>
+</resources>
+

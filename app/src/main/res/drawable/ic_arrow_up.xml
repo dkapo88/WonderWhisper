@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Send/Submit icon - paper plane style
+    Source: SVG Repo
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M12,18.58V12.5M12.8,18.75L15.81,19.76C17.45,20.31 18.27,20.59 18.78,20.39C19.22,20.22 19.55,19.85 19.68,19.4C19.82,18.87 19.47,18.08 18.76,16.51L14.22,6.37C13.53,4.82 13.18,4.05 12.7,3.81C12.28,3.6 11.79,3.6 11.37,3.81C10.89,4.05 10.54,4.82 9.84,6.36L5.26,16.51C4.54,18.09 4.19,18.88 4.33,19.4C4.46,19.85 4.79,20.22 5.23,20.39C5.73,20.59 6.56,20.32 8.2,19.77L11.28,18.75C11.56,18.66 11.7,18.61 11.85,18.59C11.97,18.58 12.1,18.58 12.23,18.59C12.38,18.61 12.52,18.66 12.8,18.75Z"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

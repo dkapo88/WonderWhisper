@@ -1,0 +1,50 @@
+package com.slumdog88.dictationkeyboardai.ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+// Premium Dark Theme Colors (general app usage)
+val KeyboardBackgroundDark = Color(0xFF121417)
+val KeyBackgroundDark = Color(0xFF2C3036)
+val KeyBackgroundPressedDark = Color(0xFF3E444D)
+val KeyTextPrimaryDark = Color(0xFFFFFFFF)
+val KeyTextSecondaryDark = Color(0xFF8A919E)
+val SpecialKeyBackgroundDark = Color(0xFF1E2228)
+
+// Premium Light Theme Colors (general app usage)
+val KeyboardBackgroundLight = Color(0xFFECEFF1)
+val KeyBackgroundLight = Color(0xFFFFFFFF)
+val KeyBackgroundPressedLight = Color(0xFFCFD8DC)
+val KeyTextPrimaryLight = Color(0xFF121417)
+val KeyTextSecondaryLight = Color(0xFF546E7A)
+val SpecialKeyBackgroundLight = Color(0xFFCFD8DC)
+
+// Accents (Shared)
+val AccentPrimary = Color(0xFF4D88FF)
+val AccentSecondary = Color(0xFF00E5FF)
+val AccentError = Color(0xFFFF4D4D)
+
+// LXX Light palette (inspired by android-keyboard-master)
+val LxxLightKeyboardBackground = Color(0xFFF6F7F8)
+val LxxLightKeyBackground = Color(0xFFECEFF1)
+val LxxLightKeyPressedBackground = Color(0x2637474F)
+val LxxLightFunctionalKeyBackground = Color(0xFFD7DEE3)
+val LxxLightFunctionalKeyPressedBackground = Color(0xFFCFD8DC)
+val LxxLightKeyTextPrimary = Color(0xFF37474F)
+val LxxLightKeyTextSecondary = Color(0xB337474F)
+val LxxLightFunctionalKeyText = Color(0xCC37474F)
+val LxxLightAccent = Color(0xFF4DB6AC)
+val LxxLightMicIdle = Color(0xFF607D8B)
+val LxxLightMicActive = Color(0xFFE53935)
+
+// LXX Dark palette
+val LxxDarkKeyboardBackground = Color(0xFF21272B)
+val LxxDarkKeyBackground = Color(0xFF263238)
+val LxxDarkKeyPressedBackground = Color(0x19FFFFFF)
+val LxxDarkFunctionalKeyBackground = Color(0xFF37474F)
+val LxxDarkFunctionalKeyPressedBackground = Color(0x33FFFFFF)
+val LxxDarkKeyTextPrimary = Color(0xCCFFFFFF)
+val LxxDarkKeyTextSecondary = Color(0x80FFFFFF)
+val LxxDarkFunctionalKeyText = Color(0xE0FFFFFF)
+val LxxDarkAccent = Color(0xFF80CBC4)
+val LxxDarkMicIdle = Color(0xFF455A64)
+val LxxDarkMicActive = Color(0xFFE53935)

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme (Neo‑Brutalist) -->
+    <style name="Theme.DictationKeyboardAI" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Brand & accents -->
+        <item name="colorPrimary">@color/nb_pink</item>
+        <item name="colorOnPrimary">@color/nb_white</item>
+        <item name="colorSecondary">@color/nb_cyan</item>
+        <item name="colorOnSecondary">@color/nb_white</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Surfaces -->
+        <item name="android:windowBackground">@color/nb_base</item>
+        <item name="backgroundColor">@color/nb_base</item>
+
+        <!-- Buttons -->
+        <item name="materialButtonStyle">@style/Brutal.Button</item>
+        <item name="android:buttonStyle">@style/Brutal.Button</item>
+
+        <!-- Text appearances -->
+        <item name="textAppearanceHeadlineSmall">@style/TextBrutal.Heading24</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextBrutal.Heading28</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextBrutal.Heading32</item>
+        <item name="textAppearanceBodyLarge">@style/TextBrutal.Body18</item>
+    </style>
+
+    <style name="Brutal.Button" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/brutal_button_primary_shadow</item>
+        <item name="android:textColor">@color/nb_white</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+        <item name="backgroundTint">@null</item>
+        <item name="rippleColor">@android:color/transparent</item>
+    </style>
+    
+    <!-- Bottom Navigation Text Styles (deprecated by styles_typography) -->
+    <style name="BottomNavTextActive" parent="@style/Brutal.BottomNavLabel.Active" />
+    <style name="BottomNavTextInactive" parent="@style/Brutal.BottomNavLabel.Inactive" />
+
+    <!-- Transparent floating theme for voice recognition bottom bar popup -->
+    <style name="Theme.VoiceRecognizer" parent="Theme.DictationKeyboardAI">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- Reduced dim (0.35) so more content is visible while recording -->
+        <item name="android:backgroundDimAmount">0.35</item>
+    </style>
+</resources>

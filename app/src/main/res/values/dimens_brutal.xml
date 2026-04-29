@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Radii -->
+    <dimen name="nb_radius_0">0dp</dimen>
+    <dimen name="nb_radius_1">1dp</dimen>
+    <dimen name="nb_radius_2">2dp</dimen>
+    <dimen name="nb_radius_4">4dp</dimen>
+
+    <!-- Borders -->
+    <dimen name="nb_border_3">3dp</dimen>
+    <dimen name="nb_border_4">4dp</dimen>
+    <dimen name="nb_border_5">5dp</dimen>
+
+    <!-- Elevations / Shadows -->
+    <dimen name="nb_elev_6">6dp</dimen>
+    <dimen name="nb_elev_8">8dp</dimen>
+    <dimen name="nb_elev_12">12dp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="nb_space_8">8dp</dimen>
+    <dimen name="nb_space_12">12dp</dimen>
+    <dimen name="nb_space_16">16dp</dimen>
+    <dimen name="nb_space_20">20dp</dimen>
+</resources>
+

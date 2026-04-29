@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/imeRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#80111111"
+    android:paddingTop="4dp"
+    android:paddingBottom="8dp"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp">
+
+    <!-- Single-row bar: Undo | Keyboard | AI | MIC (centered) | Select All | Backspace | Return -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:minHeight="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Left container takes equal width -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btnExpand"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/ime_expand"
+                android:src="@drawable/ic_arrow_up"
+                app:tint="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/btnUndo"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/ime_undo"
+                android:src="@drawable/ic_undo"
+                app:tint="@android:color/white" />
+
+            <!-- Keyboard switch moved before AI -->
+            <ImageButton
+                android:id="@+id/btnKeyboard"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/ime_switch_keyboard"
+                android:src="@drawable/ic_keyboard"
+                app:tint="@android:color/white" />
+
+            <!-- AI icon moved to rightmost position on left side -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/btnAI"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/ime_ai_toggle"
+                    android:src="@drawable/ic_ai_cloud"
+                    app:tint="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/lblAI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:text="@string/ime_ai_short"
+                    android:textSize="8sp"
+                    android:textColor="#FFFFFF"
+                    android:alpha="0.9"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Prominent MIC perfectly centered -->
+        <FrameLayout
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:padding="4dp">
+
+            <View
+                android:id="@+id/micBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_mic_circle" />
+
+            <ImageButton
+                android:id="@+id/btnRecord"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/ime_record"
+                android:src="@drawable/ic_mic"
+                android:scaleType="centerInside"
+                app:tint="@android:color/white" />
+        </FrameLayout>
+
+        <!-- Right container takes equal width -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Space button between Dictate and Select All -->
+            <ImageButton
+                android:id="@+id/btnSpaceMini"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/ime_space"
+                android:src="@drawable/ic_spacebar"
+                app:tint="@android:color/white" />
+
+            <!-- Select-all button -->
+            <ImageButton
+                android:id="@+id/btnSelectAll"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/ime_select_all"
+                android:src="@drawable/ic_select_all_grid"
+                app:tint="@android:color/white" />
+
+            <!-- Backspace button -->
+            <ImageButton
+                android:id="@+id/btnBackspace"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/ime_backspace"
+                android:src="@drawable/ic_backspace"
+                app:tint="@android:color/white" />
+
+            <!-- Return button -->
+            <ImageButton
+                android:id="@+id/btnReturn"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/ime_return"
+                android:src="@drawable/ic_return"
+                app:tint="@android:color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

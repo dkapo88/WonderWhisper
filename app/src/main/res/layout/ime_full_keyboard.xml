@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#121212"
+    android:paddingTop="4dp"
+    android:paddingBottom="8dp"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp">
+
+    <!-- Number row (FrameLayout wrappers for uniform sizing/margins) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_1" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="1" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="!" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_2" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="2" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_3" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="3" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="#" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_4" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="4" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_5" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="5" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="%" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_6" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="6" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="^" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_7" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="7" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="&amp;" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_8" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="8" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="*" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_9" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="9" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="(" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_0" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="0" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=")" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- QWERTY Row with long-press symbols in top-right -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_q"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="q" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="`"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_w"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="w" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_e"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="e" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="="
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_r"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="r" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_t"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="t" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_y"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="y" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_u"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="u" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&lt;"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_i"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="i" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&gt;"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_o"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="o" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="["
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+            <Button
+                android:id="@+id/key_p"
+                style="@style/KeyboardKeyButton"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:text="p" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="]"
+                android:textColor="#DDFFFFFF"
+                android:textSize="10sp"
+                android:layout_gravity="top|end"
+                android:padding="4dp"
+                android:clickable="false"
+                android:focusable="false" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- ASDF Row with long-press symbols -->
+        <!-- Left half-slot spacer to create stagger -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_a" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="a" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="§" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_s" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="s" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="±" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_d" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="d" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="£" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_f" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="f" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="€" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_g" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="g" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="{" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_h" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="h" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="}" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_j" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="j" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="&quot;" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_k" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="k" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="'" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_l" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="l" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="|" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+
+        <!-- Right half-slot spacer to create stagger -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Move Shift up to this row -->
+        <ImageButton
+            android:id="@+id/key_shift"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/bg_key_selector"
+            android:padding="8dp"
+            android:src="@drawable/ic_shift"
+            android:scaleType="center"
+            android:contentDescription="Shift"
+            app:tint="@android:color/white" />
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_z" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="z" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="/" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_x" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="x" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="\\" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_c" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="c" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_v" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="v" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=";" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_b" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="b" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="," android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_n" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="n" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="." android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="2dp">
+            <Button android:id="@+id/key_m" style="@style/KeyboardKeyButton" android:layout_width="match_parent" android:layout_weight="0" android:text="m" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="?" android:textColor="#DDFFFFFF" android:textSize="10sp" android:layout_gravity="top|end" android:padding="4dp" android:clickable="false" android:focusable="false"/>
+        </FrameLayout>
+
+        <!-- Move Book up to this row -->
+        <ImageButton
+            android:id="@+id/key_book"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/bg_key_ripple"
+            android:padding="8dp"
+            android:src="@drawable/ic_book"
+            android:scaleType="center"
+            android:contentDescription="Add to dictionary"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+
+    <include layout="@layout/ime_minimal_bar" />
+</LinearLayout>

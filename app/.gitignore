@@ -1,0 +1,16 @@
+# Build outputs
+/build
+/release
+
+# Generated files
+/src/main/assets/schemas/
+/src/androidTest/assets/schemas/
+
+# Local test results
+/androidTest-results/
+/test-results/
+
+# Lint
+/lint-results.html
+/lint-results.xml
+/lint-report.html

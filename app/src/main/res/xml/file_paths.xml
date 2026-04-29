@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- External files directory for pictures -->
+    <external-files-path
+        name="feedback_pictures"
+        path="Pictures/" />
+    
+    <!-- External files directory for documents -->
+    <external-files-path
+        name="feedback_documents"
+        path="Documents/" />
+    
+    <!-- External files directory for audio -->
+    <external-files-path
+        name="feedback_audio"
+        path="Music/" />
+    
+    <!-- External storage for app audio files -->
+    <external-path
+        name="app_audio"
+        path="Downloads/DictationKeyboardAI/" />
+    
+    <!-- App cache directory for audio file sharing -->
+    <cache-path
+        name="audio_cache"
+        path="audio/" />
+</paths> 

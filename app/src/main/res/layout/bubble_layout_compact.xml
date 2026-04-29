@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Compact bubble layout for single-button design with minimal touch area -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="84dp"
+    android:layout_height="72dp"
+    android:background="@android:color/transparent">
+
+    <!-- Mic button - centered in compact window for minimal touch area -->
+    <ImageButton
+        android:id="@+id/mic_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_mic"
+        android:background="@drawable/circle_black_whiteborder"
+        android:scaleType="centerInside"
+        android:padding="12dp"
+        android:contentDescription="Microphone" />
+
+</FrameLayout>

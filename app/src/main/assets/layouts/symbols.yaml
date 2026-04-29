@@ -1,0 +1,52 @@
+name: Symbols
+category: symbols
+description: Symbols page modeled after FUTO LXX symbols
+includeDefaultNumberRow: true
+includeDefaultBottomRow: true
+rows:
+  - type: letters
+    keys:
+      - label: "@"
+      - label: "#"
+      - label: "$"
+        popup: ["¢", "£", "€", "¥", "₽"]
+      - label: "%"
+        popup: ["‰"]
+      - label: "&"
+      - label: "_"
+      - label: "-"
+        popup: ["_", "–", "—", "·"]
+      - label: "+"
+        popup: ["±"]
+      - label: "("
+        popup: ["<", "{", "["]
+      - label: ")"
+        popup: [">", "}", "]"]
+
+  - type: letters
+    keys:
+      - label: "~"
+      - label: "="
+        popup: ["≠", "≈", "∞"]
+      - label: "\\"
+      - label: "/"
+      - label: "*"
+        popup: ["†", "‡", "★"]
+      - label: "\""
+      - label: "'"
+      - label: ":"
+      - label: ";"
+
+  - type: letters
+    keys:
+      - template: Shift
+        weight: 1.5
+      - label: "!"
+        popup: ["¡"]
+      - label: "?"
+        popup: ["¿"]
+      - label: ","
+      - label: "."
+        popup: ["…"]
+      - template: Delete
+        weight: 1.5

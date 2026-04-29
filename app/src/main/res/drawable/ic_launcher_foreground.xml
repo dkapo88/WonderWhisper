@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108"
+    android:tint="#E53935">
+    
+    <!-- New 3D microphone icon -->
+    <group android:scaleX="0.7"
+         android:scaleY="0.7"
+         android:pivotX="54"
+         android:pivotY="54">
+        
+        <!-- Main microphone body -->
+        <path
+            android:fillColor="#E53935"
+            android:pathData="M54,20C60,20 65,25 65,31L65,49C65,55 60,60 54,60C48,60 43,55 43,49L43,31C43,25 48,20 54,20Z"/>
+        
+        <!-- Microphone grille lines -->
+        <path
+            android:fillColor="#B71C1C"
+            android:pathData="M47,28L61,28L61,30L47,30Z"/>
+        <path
+            android:fillColor="#B71C1C"
+            android:pathData="M47,33L61,33L61,35L47,35Z"/>
+        <path
+            android:fillColor="#B71C1C"
+            android:pathData="M47,38L61,38L61,40L47,40Z"/>
+        <path
+            android:fillColor="#B71C1C"
+            android:pathData="M47,43L61,43L61,45L47,45Z"/>
+        
+        <!-- Microphone stand/base -->
+        <path
+            android:fillColor="#E53935"
+            android:pathData="M35,49C35,49 35,63 54,63C73,63 73,49 73,49"/>
+        <path
+            android:fillColor="@android:color/transparent"
+            android:strokeColor="#E53935"
+            android:strokeWidth="3"
+            android:pathData="M35,49C35,49 35,63 54,63C73,63 73,49 73,49"/>
+        
+        <!-- Stand vertical line -->
+        <path
+            android:fillColor="#E53935"
+            android:pathData="M52,63L56,63L56,75L52,75Z"/>
+        
+        <!-- Base -->
+        <path
+            android:fillColor="#E53935"
+            android:pathData="M44,75L64,75L64,78L44,78Z"/>
+    </group>
+</vector>

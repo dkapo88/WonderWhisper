@@ -1,0 +1,105 @@
+name: Azerty
+category: alphabet
+description: French AZERTY layout
+includeDefaultNumberRow: false
+includeDefaultBottomRow: true
+rows:
+  - type: letters
+    keys:
+      - label: a
+        secondaryCode: "1"
+        secondaryLabel: "1"
+        popup: ["à", "á", "â", "ä", "æ", "ã", "å", "ā"]
+      - label: z
+        secondaryCode: "2"
+        secondaryLabel: "2"
+      - label: e
+        secondaryCode: "3"
+        secondaryLabel: "3"
+        popup: ["è", "é", "ê", "ë", "ē", "ė", "ę"]
+      - label: r
+        secondaryCode: "4"
+        secondaryLabel: "4"
+      - label: t
+        secondaryCode: "5"
+        secondaryLabel: "5"
+      - label: y
+        secondaryCode: "6"
+        secondaryLabel: "6"
+      - label: u
+        secondaryCode: "7"
+        secondaryLabel: "7"
+        popup: ["ū", "ú", "ù", "ü", "û"]
+      - label: i
+        secondaryCode: "8"
+        secondaryLabel: "8"
+        popup: ["ī", "í", "ì", "ï", "î"]
+      - label: o
+        secondaryCode: "9"
+        secondaryLabel: "9"
+        popup: ["ō", "ó", "ò", "ö", "ô", "œ", "ø"]
+      - label: p
+        secondaryCode: "0"
+        secondaryLabel: "0"
+
+  - type: letters
+    keys:
+      - label: q
+        secondaryCode: "@"
+        secondaryLabel: "@"
+      - label: s
+        secondaryCode: "#"
+        secondaryLabel: "#"
+        popup: ["#", "ß", "ś", "š"]
+      - label: d
+        secondaryCode: "&"
+        secondaryLabel: "&"
+      - label: f
+        secondaryCode: "_"
+        secondaryLabel: "_"
+      - label: g
+        secondaryCode: "-"
+        secondaryLabel: "-"
+      - label: h
+        secondaryCode: "+"
+        secondaryLabel: "+"
+      - label: j
+        secondaryCode: "("
+        secondaryLabel: "("
+      - label: k
+        secondaryCode: ")"
+        secondaryLabel: ")"
+      - label: l
+        secondaryCode: "/"
+        secondaryLabel: "/"
+      - label: m
+        secondaryCode: "?"
+        secondaryLabel: "?"
+
+  - type: letters
+    keys:
+      - template: Shift
+        weight: 1.5
+      - label: w
+        secondaryCode: "*"
+        secondaryLabel: "*"
+      - label: x
+        secondaryCode: "\""
+        secondaryLabel: "\""
+      - label: c
+        secondaryCode: "'"
+        secondaryLabel: "'"
+        popup: ["'", "ç", "ć", "č"]
+      - label: v
+        secondaryCode: ":"
+        secondaryLabel: ":"
+      - label: b
+        secondaryCode: ";"
+        secondaryLabel: ";"
+      - label: n
+        secondaryCode: "!"
+        secondaryLabel: "!"
+        popup: ["!", "ñ", "ń"]
+      - label: ","
+      - template: Delete
+        weight: 1.5

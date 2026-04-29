@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow layer for chunky feel -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/nb_shadow"/>
+        </shape>
+    </item>
+
+    <!-- Foreground bar offset (reveal shadow at bottom-right) -->
+    <item android:right="4dp" android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/nb_nav_background"/>
+            <stroke android:width="@dimen/nb_border_5" android:color="@color/nb_border_strong"/>
+            <corners android:radius="@dimen/nb_radius_0"/>
+        </shape>
+    </item>
+</layer-list>
+

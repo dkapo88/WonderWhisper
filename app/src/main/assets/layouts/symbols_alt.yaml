@@ -1,0 +1,44 @@
+name: SymbolsAlt
+category: symbols_alt
+description: Second symbols page for extra math and currency marks
+includeDefaultNumberRow: true
+includeDefaultBottomRow: true
+rows:
+  - type: letters
+    keys:
+      - label: "^"
+      - label: "°"
+      - label: "∞"
+      - label: "π"
+      - label: "≠"
+      - label: "÷"
+      - label: "×"
+      - label: "√"
+      - label: "±"
+      - label: "≈"
+
+  - type: letters
+    keys:
+      - label: "€"
+      - label: "£"
+      - label: "¥"
+      - label: "₩"
+      - label: "₹"
+      - label: "₽"
+      - label: "¢"
+      - label: "§"
+      - label: "™"
+
+  - type: letters
+    keys:
+      - template: Shift
+        weight: 1.5
+      - label: "|"
+      - label: "<"
+      - label: ">"
+      - label: "{"
+      - label: "}"
+      - label: "["
+      - label: "]"
+      - template: Delete
+        weight: 1.5
