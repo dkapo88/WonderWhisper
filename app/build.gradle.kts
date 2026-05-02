@@ -37,8 +37,8 @@ android {
         applicationId = "com.slumdog88.dictationkeyboardai"
         minSdk = 24
         targetSdk = 35
-        versionCode = 50
-        versionName = "10.7.2"
+        versionCode = 51
+        versionName = "10.7.3"
 
         buildConfigField("String", "GROQ_PROXY_BASE_URL", quoteBuildConfig(groqProxyBaseUrl))
         buildConfigField("String", "GROQ_PROXY_APP_TOKEN", quoteBuildConfig(groqProxyAppToken))

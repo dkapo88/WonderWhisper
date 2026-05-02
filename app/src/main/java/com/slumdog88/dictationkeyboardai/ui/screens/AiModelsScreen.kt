@@ -52,6 +52,7 @@ fun AiModelsScreenDM(
     selectedAiModelIndex: Int,
     openRouterModels: List<OpenRouterModel>,
     selectedOpenRouterModelId: String,
+    selectedOpenAIReasoningEffort: String,
     isPostProcessingEnabled: Boolean,
     isParagraphFormattingEnabled: Boolean,
     isScreenContextEnabled: Boolean,
@@ -64,6 +65,7 @@ fun AiModelsScreenDM(
     selectedNotepadOpenRouterModelId: String,
     // OpenRouter prioritization
     selectedOpenRouterPrioritization: String,
+    isSimpleMode: Boolean,
     // Soniox Language
     sonioxLanguage: String,
     onTranscriptionServiceChange: (Int) -> Unit,
@@ -81,6 +83,7 @@ fun AiModelsScreenDM(
     onNotepadOpenRouterModelChange: (String) -> Unit,
     // OpenRouter prioritization handler
     onOpenRouterPrioritizationChange: (String) -> Unit,
+    onOpenAIReasoningEffortChange: (String) -> Unit,
     // Soniox language handler
     onSonioxLanguageChange: (String) -> Unit,
     // Optional: Pro-mode helper to set defaults
@@ -315,9 +318,7 @@ fun AiModelsScreenDM(
                 lower == "openai/gpt-oss-120b" ||
                 lower == "gpt-oss-120b" ||
                 lower.contains("gpt-oss") ||
-                lower == "mistral-saba-24b" ||
-                lower.contains("maverick") ||
-                lower.startsWith("moonshotai/kimi-k2-instruct")
+                lower == "mistral-saba-24b"
         }
 
         fun providerPrefixed(model: String): String {
@@ -356,6 +357,29 @@ fun AiModelsScreenDM(
             style = TextStyle(fontSize = 12.sp, color = dim),
             modifier = Modifier.padding(bottom = 16.dp)
         )
+
+        if (!isSimpleMode) {
+            val reasoningOptions = listOf("None", "Minimal", "Low", "Medium", "High", "Xhigh")
+            val selectedReasoningIndex = reasoningOptions.indexOf(
+                selectedOpenAIReasoningEffort.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase() else it.toString()
+                }
+            ).takeIf { it >= 0 } ?: 0
+
+            LabeledDropdown(
+                label = "OpenAI Reasoning Effort",
+                options = reasoningOptions,
+                selectedIndex = selectedReasoningIndex,
+                onSelectionChange = { index ->
+                    onOpenAIReasoningEffortChange(reasoningOptions[index].lowercase())
+                }
+            )
+            Text(
+                text = "ℹ Applies to OpenAI GPT-5 reasoning models.",
+                style = TextStyle(fontSize = 12.sp, color = dim),
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+        }
 
         // OpenRouter Model Search Section
         if (showOpenRouterSection) {
@@ -796,7 +820,7 @@ private fun ModelRecommendationsSection(
 
         Text(
             text = "Top recommended models:\n" +
-                    "• Llama4 Maverick: ⭐ Best choice - Enhanced speed and instruction following\n" +
+                    "• GPT-OSS 120B: ⭐ Best Groq option for Simple Mode post-processing\n" +
                     "• GPT-5.4: Best OpenAI option for top-end post-processing\n" +
                     "• Gemini 3.1 Flash Lite Preview: Fast and cheap for lightweight cleanup\n" +
                     "• Claude Sonnet 4.6: Strong long-form rewriting and polish\n\n" +

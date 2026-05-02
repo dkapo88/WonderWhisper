@@ -89,7 +89,7 @@ class NetworkManager {
             try {
                 val prefs = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
                 val transcriptionService = prefs.getString("transcription_service", "Groq Whisper v3 Turbo") ?: "Groq Whisper v3 Turbo"
-                val aiModel = prefs.getString("ai_model", "meta-llama/llama-4-maverick-17b-128e-instruct") ?: ""
+                val aiModel = prefs.getString("ai_model", "openai/gpt-oss-120b") ?: ""
 
                 val urls = resolvePreWarmUrls(transcriptionService, aiModel)
                 Log.d("NetworkManager", "Pre-warming ${urls.size} connections for service=$transcriptionService, model=$aiModel")
@@ -149,9 +149,9 @@ class NetworkManager {
 
         when {
             aiModel.contains("groq", ignoreCase = true) ||
+                aiModel == "openai/gpt-oss-120b" ||
                 aiModel == "mistral-saba-24b" ||
-                aiModel.startsWith("meta-llama/") ||
-                aiModel.startsWith("moonshotai/", ignoreCase = true) ->
+                aiModel.startsWith("meta-llama/") ->
                 urls.add(GroqProxyConfig.modelsEndpoint(serviceUsesProxy = GroqProxyConfig.isConfigured()) to false)
             aiModel.contains("openai", ignoreCase = true) ->
                 urls.add("https://api.openai.com/v1/models" to false)

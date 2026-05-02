@@ -161,7 +161,7 @@ fun StreamingSettingsScreenDM(settingsManager: SettingsManager) {
                 "• Custom AI Instructions layer on top of the default rules—bullet lists work best.\n" +
                 "• Screen context + vocabulary are passed to the LLM for smarter spelling and names.\n" +
                 "• Use the fastest transcription and LLM models available for the snappiest experience.\n" +
-                "• Recommended combos: Groq Whisper Turbo + OSS-120B/Kimi K2/Llama Maverick; Cerebras models are great too. Claude Haiku 4.5 or Gemini Flash 2.0 balance quality and speed.",
+                "• Recommended combos: Groq Whisper Turbo + OSS-120B; Cerebras models are great too. Claude Haiku 4.5 or Gemini Flash 2.0 balance quality and speed.",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -386,4 +386,3 @@ private fun VadSettingCard(
         }
     }
 }
-

@@ -79,6 +79,18 @@ class AIProcessingManager(
     fun getLastSystemMessage(): String? = lastSystemMessage
     fun getLastUserMessage(): String? = lastUserMessage
 
+    private fun addOpenAIReasoningIfConfigured(body: MutableMap<String, Any>, model: String) {
+        val effort = settingsManager.getOpenAIReasoningEffort()
+        if (effort != "none" || supportsOpenAIReasoningNone(model)) {
+            body["reasoning"] = mapOf("effort" to effort)
+        }
+    }
+
+    private fun supportsOpenAIReasoningNone(model: String): Boolean {
+        val normalized = model.lowercase().removePrefix("openai/")
+        return normalized.startsWith("gpt-5.4") || normalized.startsWith("gpt-5.1")
+    }
+
     /**
      * Main AI processing method that handles provider selection and caching
      */
@@ -468,10 +480,10 @@ class AIProcessingManager(
             val response = if (isGpt5Responses) {
                 // Responses API for GPT-5
                 val fullPrompt = "$systemMessage\n\n$userMessage"
-                val responsesBody = mapOf(
+                val responsesBody = mutableMapOf<String, Any>(
                     "model" to aiModel,
                     "input" to fullPrompt
-                )
+                ).also { addOpenAIReasoningIfConfigured(it, aiModel) }
                 val jsonBody = gson.toJson(responsesBody)
                 Log.d("AIProcessingManager", "Using Responses API for $aiModel with payload length=${jsonBody.length}")
                 val request = okhttp3.Request.Builder()
@@ -1325,10 +1337,10 @@ class AIProcessingManager(
             val client = networkManager.aiProcessingHttpClient
             val isGpt5Responses = resolvedModel.lowercase().startsWith("gpt-5") && resolvedModel.lowercase() != "gpt-5-chat-latest"
             val response = if (isGpt5Responses) {
-                val requestBody = mapOf(
+                val requestBody = mutableMapOf<String, Any>(
                     "model" to resolvedModel,
                     "input" to "$systemMessage\n\n$userMessage"
-                )
+                ).also { addOpenAIReasoningIfConfigured(it, resolvedModel) }
                 val jsonBody = gson.toJson(requestBody)
                 val request = okhttp3.Request.Builder()
                     .url("https://api.openai.com/v1/responses")

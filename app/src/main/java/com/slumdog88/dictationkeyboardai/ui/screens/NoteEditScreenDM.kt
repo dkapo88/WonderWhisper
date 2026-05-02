@@ -918,8 +918,9 @@ private suspend fun tryAIReformat(context: Context, fullPrompt: String, override
         }
 
         // Use override model if provided (for fallback), otherwise read from preferences
-        val rawLabel = overrideModel ?: prefs.getString("notepad_ai_model",
+        val selectedLabel = overrideModel ?: prefs.getString("notepad_ai_model",
             prefs.getString("ai_model", "OpenAI")) ?: "OpenAI"
+        val rawLabel = normalizeDeprecatedGroqModel(selectedLabel)
         android.util.Log.d("NoteEditScreenDM", "Using model: $rawLabel")
 
         // Configured OpenRouter model id (Notepad override first)
@@ -1116,13 +1117,36 @@ private fun inferProviderFromVendor(vendorModelId: String): String {
         id.contains("mistral") ||
         id.contains("mixtral") ||
         id.contains("llama") ||
-        id.contains("gemma") ||
-        id.contains("moonshot") ||
-        id.contains("kimi") ||
-        id.contains("k2") -> "Groq"
+        id.contains("gemma") -> "Groq"
 
         else -> "OpenAI"
     }
+}
+
+private fun normalizeDeprecatedGroqModel(model: String): String {
+    return when (model.lowercase().trim()) {
+        "meta-llama/llama-4-scout-17b-16e-instruct",
+        "meta-llama/llama-4-maverick-17b-128e-instruct",
+        "moonshotai/kimi-k2-instruct-0905" -> "openai/gpt-oss-120b"
+        else -> model
+    }
+}
+
+private fun getOpenAIReasoningEffort(context: Context): String {
+    val value = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        .getString("openai_reasoning_effort", "none")
+        ?.lowercase()
+        ?.trim()
+        ?: "none"
+    return when (value) {
+        "minimal", "low", "medium", "high", "xhigh" -> value
+        else -> "none"
+    }
+}
+
+private fun supportsOpenAIReasoningNone(model: String): Boolean {
+    val normalized = model.lowercase().removePrefix("openai/")
+    return normalized.startsWith("gpt-5.4") || normalized.startsWith("gpt-5.1")
 }
 
 private suspend fun processWithOpenAI(context: Context, prompt: String, model: String): String? {
@@ -1140,6 +1164,10 @@ private suspend fun processWithOpenAI(context: Context, prompt: String, model: S
             JSONObject().apply {
                 put("model", model)
                 put("input", prompt)
+                val reasoningEffort = getOpenAIReasoningEffort(context)
+                if (reasoningEffort != "none" || supportsOpenAIReasoningNone(model)) {
+                    put("reasoning", JSONObject().put("effort", reasoningEffort))
+                }
             }
         } else {
             JSONObject().apply {
@@ -1378,23 +1406,24 @@ private suspend fun processWithClaude(context: Context, prompt: String, model: S
 
 private suspend fun processWithGroq(context: Context, prompt: String, model: String): String? {
     return try {
+        val resolvedModel = normalizeDeprecatedGroqModel(model)
         val userKey = SecureApiKeyManager.getInstance(context).getApiKey("groq_api_key")
         val useProxy = GroqProxyConfig.shouldUseProxy(userKey)
         val key = if (!userKey.isNullOrBlank()) {
-            android.util.Log.d("NoteEditScreenDM", "Using user's Groq API key for model: $model")
+            android.util.Log.d("NoteEditScreenDM", "Using user's Groq API key for model: $resolvedModel")
             userKey
         } else if (useProxy) {
-            android.util.Log.d("NoteEditScreenDM", "Using hosted Groq proxy for model: $model")
+            android.util.Log.d("NoteEditScreenDM", "Using hosted Groq proxy for model: $resolvedModel")
             ""
         } else {
             android.util.Log.e("NoteEditScreenDM", "Groq API key is missing")
             return null
         }
 
-        android.util.Log.d("NoteEditScreenDM", "Processing with Groq model: $model, directKeyPresent=${key.isNotBlank()}")
+        android.util.Log.d("NoteEditScreenDM", "Processing with Groq model: $resolvedModel, directKeyPresent=${key.isNotBlank()}")
 
         val body = JSONObject().apply {
-            put("model", model)
+            put("model", resolvedModel)
             put("messages", JSONArray().apply {
                 put(JSONObject().apply {
                     put("role", "user")

@@ -4370,9 +4370,8 @@ Return ONLY the title, no explanations or quotes:"""
             val isClaudeModel = aiModel.startsWith("claude", ignoreCase = true)
             val isGroqModel = aiModel.startsWith("mistral", ignoreCase = true) ||
                               aiModel == "mistral-saba-24b" ||
-                              aiModel == "meta-llama/llama-4-maverick-17b-128e-instruct" ||
-                              aiModel == "groq/openai/gpt-oss-20b" ||
-                              aiModel.startsWith("moonshotai/kimi-k2-instruct", ignoreCase = true)
+                              aiModel == "openai/gpt-oss-120b" ||
+                              aiModel == "groq/openai/gpt-oss-20b"
             val isOpenRouterModel = aiModel == "OpenRouter"
 
             val modelType = when {
@@ -4516,9 +4515,8 @@ Return ONLY the title, no explanations or quotes:"""
             val isClaudeModel = aiModel.startsWith("claude", ignoreCase = true)
             val isGroqModel = aiModel.startsWith("mistral", ignoreCase = true) ||
                               aiModel == "mistral-saba-24b" ||
-                              aiModel == "meta-llama/llama-4-maverick-17b-128e-instruct" ||
-                              aiModel == "groq/openai/gpt-oss-20b" ||
-                              aiModel.startsWith("moonshotai/kimi-k2-instruct", ignoreCase = true)
+                              aiModel == "openai/gpt-oss-120b" ||
+                              aiModel == "groq/openai/gpt-oss-20b"
             val isOpenRouterModel = aiModel == "OpenRouter"
 
             val modelType = when {
@@ -4717,9 +4715,8 @@ Return ONLY the title, no explanations or quotes:"""
             val isClaudeModel = aiModel.startsWith("claude", ignoreCase = true)
             val isGroqModel = aiModel.startsWith("mistral", ignoreCase = true) ||
                               aiModel == "mistral-saba-24b" ||
-                              aiModel == "meta-llama/llama-4-maverick-17b-128e-instruct" ||
-                              aiModel == "groq/openai/gpt-oss-20b" ||
-                              aiModel.startsWith("moonshotai/kimi-k2-instruct", ignoreCase = true)
+                              aiModel == "openai/gpt-oss-120b" ||
+                              aiModel == "groq/openai/gpt-oss-20b"
             val isOpenRouterModel = aiModel == "OpenRouter"
 
             val modelType = when {

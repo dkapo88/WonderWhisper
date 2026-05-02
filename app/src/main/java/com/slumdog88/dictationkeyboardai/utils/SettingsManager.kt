@@ -13,6 +13,7 @@ private const val KEY_STREAMING_VAD_AMPLITUDE = "streaming_vad_amplitude"
 private const val KEY_STREAMING_VAD_MIN_DURATION = "streaming_vad_min_duration_ms"
 private const val KEY_STREAMING_VAD_HANGOVER = "streaming_vad_hangover_ms"
 private const val KEY_STREAMING_VAD_MODE = "streaming_vad_mode"
+private const val KEY_OPENAI_REASONING_EFFORT = "openai_reasoning_effort"
 const val KEY_USE_COMMAND_PROMPT_FOR_SELECTED_TEXT = "use_command_prompt_for_selected_text"
 
 /**
@@ -54,9 +55,10 @@ class SettingsManager(private val context: Context) {
                     return when (key) {
                         // Force Simple Mode defaults regardless of Pro selections
                         "transcription_service" -> "Groq Whisper v3 Turbo"
-                        // LLaMA 4 Scout for post-processing in Simple Mode
-                        "ai_model" -> "meta-llama/llama-4-maverick-17b-128e-instruct"
+                        // GPT-OSS 120B for post-processing in Simple Mode
+                        "ai_model" -> "openai/gpt-oss-120b"
                         "streaming_ai_model" -> "groq/openai/gpt-oss-20b"
+                        "openai_reasoning_effort" -> "none"
                         // Notepad default LLM is OSS120B
                         "notepad_ai_model" -> "openai/gpt-oss-120b"
                         "openrouter_model_id" -> appSettings.getString("openrouter_model_id", "anthropic/claude-sonnet-4-6")
@@ -283,11 +285,26 @@ class SettingsManager(private val context: Context) {
      */
     fun getAIModel(): String {
         val prefs = getSettings()
-        val model = prefs.getString("ai_model", "meta-llama/llama-4-maverick-17b-128e-instruct")
-            ?: "meta-llama/llama-4-maverick-17b-128e-instruct"
+        val model = prefs.getString("ai_model", "openai/gpt-oss-120b")
+            ?: "openai/gpt-oss-120b"
         return when (model) {
-            "meta-llama/llama-4-scout-17b-16e-instruct" -> "meta-llama/llama-4-maverick-17b-128e-instruct"
+            "meta-llama/llama-4-scout-17b-16e-instruct",
+            "meta-llama/llama-4-maverick-17b-128e-instruct",
+            "moonshotai/kimi-k2-instruct-0905" -> "openai/gpt-oss-120b"
             else -> model
+        }
+    }
+
+    fun getOpenAIReasoningEffort(): String {
+        if (isSimpleMode()) return "none"
+        val value = getRawAppSettings()
+            .getString(KEY_OPENAI_REASONING_EFFORT, "none")
+            ?.lowercase()
+            ?.trim()
+            ?: "none"
+        return when (value) {
+            "minimal", "low", "medium", "high", "xhigh" -> value
+            else -> "none"
         }
     }
     

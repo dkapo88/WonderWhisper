@@ -26,6 +26,7 @@ import com.slumdog88.dictationkeyboardai.offline.updateModelState
 import com.slumdog88.dictationkeyboardai.ui.screens.AiModelsScreenDM
 import com.slumdog88.dictationkeyboardai.ui.screens.OpenRouterModel
 import com.slumdog88.dictationkeyboardai.ui.theme.AppTheme
+import com.slumdog88.dictationkeyboardai.utils.SettingsManager
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -64,6 +65,7 @@ class AiModelsActivity : ComponentActivity() {
 
         // OpenAI
         OpenRouterModel("openai/gpt-5.4-2026-03-05", "GPT-5.4", "OpenAI"),
+        OpenRouterModel("openai/gpt-5.4-mini", "GPT-5.4 Mini", "OpenAI"),
         OpenRouterModel("openai/gpt-5-chat-latest", "GPT-5 Chat Latest", "OpenAI"),
         OpenRouterModel("openai/gpt-5", "GPT-5", "OpenAI"),
         OpenRouterModel("openai/gpt-5-mini", "GPT-5 Mini", "OpenAI"),
@@ -75,7 +77,6 @@ class AiModelsActivity : ComponentActivity() {
         OpenRouterModel("google/gemini-2.5-flash", "Gemini 2.5 Flash", "Google"),
 
         // Meta Llama
-        OpenRouterModel("meta-llama/llama-4-maverick-17b-128e-instruct", "Llama 4 Maverick", "Meta"),
         OpenRouterModel("meta-llama/llama-3.1-405b-instruct", "Llama 3.1 405B", "Meta"),
 
         // Mistral
@@ -93,7 +94,6 @@ class AiModelsActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         val prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
-
         // Load cached OpenRouter models and auto-refresh if needed
         loadCachedOpenRouterModels(prefs)
         autoRefreshOpenRouterModels(prefs)
@@ -161,6 +161,11 @@ class AiModelsActivity : ComponentActivity() {
         var selectedOpenRouterPrioritization by remember {
             mutableStateOf(prefs.getString("openrouter_prioritization", "automatic") ?: "automatic")
         }
+
+        var selectedOpenAIReasoningEffort by remember {
+            mutableStateOf(prefs.getString("openai_reasoning_effort", "none") ?: "none")
+        }
+        val isSimpleMode = remember { SettingsManager(this@AiModelsActivity).isSimpleMode() }
 
         var sonioxLanguage by remember {
             mutableStateOf(prefs.getString("soniox_language", "en") ?: "en")
@@ -267,6 +272,7 @@ class AiModelsActivity : ComponentActivity() {
             selectedAiModelIndex = selectedAiModelIndex,
             openRouterModels = openRouterModels.value,
             selectedOpenRouterModelId = selectedOpenRouterModelId,
+            selectedOpenAIReasoningEffort = selectedOpenAIReasoningEffort,
             isPostProcessingEnabled = isPostProcessingEnabled,
             isParagraphFormattingEnabled = isParagraphFormattingEnabled,
             isScreenContextEnabled = isScreenContextEnabled,
@@ -279,6 +285,7 @@ class AiModelsActivity : ComponentActivity() {
             selectedNotepadOpenRouterModelId = selectedNotepadOpenRouterModelId,
             // OpenRouter prioritization
             selectedOpenRouterPrioritization = selectedOpenRouterPrioritization,
+            isSimpleMode = isSimpleMode,
             // Soniox Language
             sonioxLanguage = sonioxLanguage,
             onTranscriptionServiceChange = { index ->
@@ -326,6 +333,12 @@ class AiModelsActivity : ComponentActivity() {
                 HapticUtils.performHapticFeedback(this@AiModelsActivity)
                 Log.d("AiModelsActivity", "OpenRouter prioritization changed to: $prioritization")
             },
+            onOpenAIReasoningEffortChange = { effort ->
+                selectedOpenAIReasoningEffort = effort
+                prefs.edit().putString("openai_reasoning_effort", effort).apply()
+                HapticUtils.performHapticFeedback(this@AiModelsActivity)
+                Log.d("AiModelsActivity", "OpenAI reasoning effort changed to: $effort")
+            },
             onSonioxLanguageChange = { language ->
                 sonioxLanguage = language
                 prefs.edit().putString("soniox_language", language).apply()
@@ -359,18 +372,14 @@ class AiModelsActivity : ComponentActivity() {
                 refreshOpenRouterModels(prefs)
             },
             onSetDefaults = {
-                // Set LLaMA 4 Maverick for AI post-processing and OSS120B for Notepad
+                // Set OSS120B for AI post-processing and Notepad
                 // IMPORTANT: compute indices against the effective models list shown in the dropdown
                 val models = aiModelsEffective
-                val llamaMaverickIdx = models.indexOfFirst { it.equals("meta-llama/llama-4-maverick-17b-128e-instruct", ignoreCase = true) }
                 val ossIdx = models.indexOfFirst { it.equals("openai/gpt-oss-120b", ignoreCase = true) || it.equals("gpt-oss-120b", ignoreCase = true) }
                 var applied = false
-                if (llamaMaverickIdx >= 0) {
-                    selectedAiModelIndex = llamaMaverickIdx
-                    prefs.edit().putString("ai_model", models[llamaMaverickIdx]).apply()
-                    applied = true
-                }
                 if (ossIdx >= 0) {
+                    selectedAiModelIndex = ossIdx
+                    prefs.edit().putString("ai_model", models[ossIdx]).apply()
                     selectedNotepadAiModelIndex = ossIdx
                     prefs.edit().putString("notepad_ai_model", models[ossIdx]).apply()
                     applied = true

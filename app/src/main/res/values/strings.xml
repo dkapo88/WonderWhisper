@@ -8,8 +8,6 @@
         <!-- Groq Models -->
         <item>groq/openai/gpt-oss-20b</item>
         <item>openai/gpt-oss-120b</item>
-        <item>meta-llama/llama-4-maverick-17b-128e-instruct</item>
-        <item>moonshotai/kimi-k2-instruct-0905</item>
         <!-- Google Gemini Models -->
         <item>gemini-3.1-flash-lite-preview</item>
         <item>gemini-2.5-pro</item>
@@ -17,6 +15,7 @@
         <item>gemini-2.0-flash</item>
         <!-- OpenAI Models -->
         <item>gpt-5.4-2026-03-05</item>
+        <item>gpt-5.4-mini</item>
         <item>gpt-5-chat-latest</item>
         <item>gpt-5</item>
         <item>gpt-5-mini</item>
@@ -33,7 +32,6 @@
         <item>cerebras/gpt-oss-120b</item>
         <item>cerebras/qwen-3-32b</item>
         <!-- Cerebras Models (Preview - evaluation only) -->
-        <item>cerebras/llama-4-maverick-17b-128e-instruct</item>
         <item>cerebras/qwen-3-235b-a22b-instruct-2507</item>
         <item>cerebras/qwen-3-235b-a22b-thinking-2507</item>
         <item>cerebras/qwen-3-coder-480b</item>
